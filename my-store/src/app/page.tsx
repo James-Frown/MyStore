@@ -1,3 +1,3 @@
-export default function Landing() {
-  return <></>;
+export default function LandingPage() {
+  return <>Landing</>;
 }
