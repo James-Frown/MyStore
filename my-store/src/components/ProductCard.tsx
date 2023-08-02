@@ -14,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <Link
-        className="card w-full transition ease-in-out delay-150 bg-white text-slate-600 hover:scale-105 hover:bg-cyan-500 duration-300 ..."
+        className="card w-full transition ease-in-out delay-150 bg-white text-slate-600 hover:bg-cyan-100 duration-300 ..."
         href={"/products/" + product.id}
       >
         <figure>
@@ -28,7 +28,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         </figure>
         <div className="card-body">
           <h2 className="card-title">{product.name}</h2>
-          {isNew && <div className="badge badge-info badge-lg text-white">NEW</div>}
+          {isNew && (
+            <div className="badge badge-info badge-lg text-white">NEW</div>
+          )}
           <p>{product.description}</p>
           <PriceTag price={product.price} />
         </div>
