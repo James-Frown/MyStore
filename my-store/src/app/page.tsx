@@ -13,7 +13,7 @@ export default async function HomePage() {
     <>
       <div>
         <div className="hero rounded-xl flex flex-col">
-          <div className="hero-content flex-col lg:flex-row">
+          <div className="hero-content flex-col lg:flex-row gap-4">
             <Image
               src={products[0].imageUrl}
               alt={products[0].name}
@@ -27,7 +27,7 @@ export default async function HomePage() {
               <p className="py-6">{products[0].description}</p>
               <Link
                 href={"/products/" + products[0].id}
-                className="btn btn-primary"
+                className="btn btn-warning"
               >
                 Check It Out!
               </Link>
