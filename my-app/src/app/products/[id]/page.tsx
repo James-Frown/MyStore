@@ -40,12 +40,7 @@ export default async function ProductPage({
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div>
-          <Link className="btn btn-accent" href={"/"}>
-            Back
-          </Link>
-        </div>
+      <div className="flex flex-col lg:flex-row gap-6 mt-6">
         <div>
           <div className="flex flex-col lg:flex-row gap-6 lg:items-center">
             <Image
