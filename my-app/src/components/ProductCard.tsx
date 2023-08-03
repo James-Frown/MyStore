@@ -31,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           {isNew && (
             <div className="badge badge-info badge-lg text-white">NEW</div>
           )}
-          <p>{product.description}</p>
+          <p className="text-sm md:text-lg">{product.description}</p>
           <PriceTag price={product.price} />
         </div>
       </Link>

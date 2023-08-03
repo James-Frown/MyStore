@@ -22,7 +22,7 @@ export default function NotFoundPage() {
             <span>Warning: Page Not Found!</span>
           </div>
         </div>
-        <div className="w-full mt-[45vh] text-center">
+        <div className="w-full mt-[30vh] text-center">
           <Link className="btn btn-warning" href={"/"}>
             Take Me Home!
           </Link>
