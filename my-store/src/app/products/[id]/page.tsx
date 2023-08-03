@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import AddToCartButton from "./AddToCartButton";
+import { incrementProductQuantity } from "./actions";
 
 interface ProductPageProps {
   params: {
@@ -40,7 +42,7 @@ export default async function ProductPage({
     <>
       <div className="flex flex-col lg:flex-row gap-6">
         <div>
-          <Link className="btn btn-warning" href={"/"}>
+          <Link className="btn btn-accent" href={"/"}>
             Back
           </Link>
         </div>
@@ -58,6 +60,10 @@ export default async function ProductPage({
               <h1 className="text-5xl bold">{product.name}</h1>
               <PriceTag price={product.price} className="mt-6" />
               <p className="mt-6 mb-6">{product.description}</p>
+              <AddToCartButton
+                productId={product.id}
+                incrementProductQuantity={incrementProductQuantity}
+              />
             </div>
           </div>
         </div>
