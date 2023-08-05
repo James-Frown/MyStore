@@ -1,6 +1,8 @@
 import FormSubmitButton from "@/components/FormSubmitButton";
 import { prisma } from "@/lib/db/prisma";
 import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
 export const metadata = {
   title: "Add Product | MyStore",
@@ -8,6 +10,12 @@ export const metadata = {
 
 async function addProduct(formData: FormData) {
   "use server";
+
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
 
   const name = formData.get("name")?.toString();
   const description = formData.get("description")?.toString();
@@ -19,47 +27,51 @@ async function addProduct(formData: FormData) {
   }
 
   await prisma.product.create({
-    data: {name, description, imageUrl, price},
+    data: { name, description, imageUrl, price },
   });
 
   redirect("/");
 }
 
-export default function AddProductPage() {
+export default async function AddProductPage() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
+
   return (
     <>
       <div>
-        <h1 className="text-lg mb-3 font-bold">Add Product</h1>
+        <h1 className="mb-3 text-lg font-bold">Add Product</h1>
         <form action={addProduct}>
           <input
             required
             name="name"
             placeholder="Name"
-            className="input input-bordered mb-3 w-full"
+            className="input-bordered input mb-3 w-full"
           />
           <textarea
             required
             name="description"
             placeholder="Description"
-            className="textarea textarea-bordered mb-3 w-full"
+            className="textarea-bordered textarea mb-3 w-full"
           />
           <input
             required
             name="imageUrl"
             placeholder="Image Url"
             type="url"
-            className="input input-bordered mb-3 w-full"
+            className="input-bordered input mb-3 w-full"
           />
           <input
             required
             name="price"
             placeholder="Price"
             type="number"
-            className="input input-bordered mb-3 w-full"
+            className="input-bordered input mb-3 w-full"
           />
-          <FormSubmitButton className="btn-block">
-            Add Product
-          </FormSubmitButton>
+          <FormSubmitButton className="btn-block">Add Product</FormSubmitButton>
         </form>
       </div>
     </>
